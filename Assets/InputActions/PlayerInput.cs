@@ -160,8 +160,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""id"": ""855d0720-092d-4a34-b5e6-1836f7e73752"",
                     ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": ""Tap,Hold"",
-                    ""initialStateCheck"": false
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -169,7 +169,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""51feb4e2-a02d-4205-b436-9a824bd8fb28"",
                     ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Fire"",

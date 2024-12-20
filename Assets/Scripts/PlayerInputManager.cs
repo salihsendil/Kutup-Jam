@@ -12,9 +12,12 @@ public class PlayerInputManager : MonoBehaviour
     [Header("Movement Variables")]
     private Vector2 _movementInput;
 
+    [Header("Fire Variables")]
+    private bool _isShooting;
+
     [Header("Getters - Setters")]
     public Vector2 MovementInput { get => _movementInput; }
-
+    public bool IsShooting { get => _isShooting; }
 
     private void Awake()
     {
@@ -39,18 +42,15 @@ public class PlayerInputManager : MonoBehaviour
         _playerInput.Movement.Move.performed += Move;
         _playerInput.Movement.Move.canceled += Move;
 
+        _playerInput.Mouse.Fire.started += Fire;
         _playerInput.Mouse.Fire.performed += Fire;
-
-    }
-
-    void Update()
-    {
+        _playerInput.Mouse.Fire.canceled += Fire;
 
     }
 
     private void Fire(InputAction.CallbackContext callback)
     {
-
+        _isShooting = callback.ReadValueAsButton();
     }
 
     void Move(InputAction.CallbackContext callback)
