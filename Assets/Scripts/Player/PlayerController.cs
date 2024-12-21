@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour, IShootable
     [SerializeField] private Transform _shootingPoint;
 
     [Header("Health Variables")]
-    [SerializeField] private int health = 100;
+    public int health = 100;
     public HealthSystem healthSystem;
 
 
@@ -42,8 +42,6 @@ public class PlayerController : MonoBehaviour, IShootable
         Instance = this;
         DontDestroyOnLoad(gameObject);
         #endregion
-        healthSystem = new HealthSystem(health);
-
     }
 
 

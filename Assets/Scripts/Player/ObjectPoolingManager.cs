@@ -7,8 +7,8 @@ public class ObjectPoolingManager : MonoBehaviour
     public static ObjectPoolingManager Instance { get; private set; }
 
     [Header("Const Variables")]
-    private const int PROJECTILE_POOL_SIZE = 30;
-    private const int ENEMY_POOL_SIZE = 30;
+    private const int PROJECTILE_POOL_SIZE = 100;
+    private const int ENEMY_POOL_SIZE = 100;
 
     [Header("Prefabs")]
     [SerializeField] private GameObject _projectilePrefab;
