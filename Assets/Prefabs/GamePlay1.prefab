@@ -2406,6 +2406,7 @@ MonoBehaviour:
   waterText: {fileID: 8395895684630055394}
   ironText: {fileID: 3790479278321320306}
   healthBar: {fileID: 5677627916544745383}
+  healIncrease: 10
   _gameOverPanel: {fileID: 5643971335817898867}
 --- !u!114 &4742688749804891614
 MonoBehaviour:
@@ -2502,6 +2503,10 @@ PrefabInstance:
     - target: {fileID: 9085811714981047575, guid: 99918769f71b7f9449713011dfb84217, type: 3}
       propertyPath: _speed
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9085811714981047575, guid: 99918769f71b7f9449713011dfb84217, type: 3}
+      propertyPath: health
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
