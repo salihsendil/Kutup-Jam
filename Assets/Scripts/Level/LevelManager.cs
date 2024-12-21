@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -9,6 +10,7 @@ public class LevelManager : MonoBehaviour
     {
         public GameObject lockLevel; 
         public Image playButtonImage; 
+        public Button playButton;
         public Item[] items;
     }
     [Header("Level Setting")]
@@ -20,12 +22,21 @@ public class LevelManager : MonoBehaviour
     [Header("Game Level Reset Setting")]
     public bool resetResources = true;
     public bool resetLevels = true;
-
+    public GameObject gamePlayScene;
+    public GameObject levelScene;
     private void Start()
     {
         InitializeLevels();
+        levels[startingLevel].
+            playButton.onClick.AddListener(GetGamePlayScene);
     }
 
+    private void GetGamePlayScene()
+    {
+        gamePlayScene.SetActive(true);
+        levelScene.SetActive(false);
+    }
+    
     private void InitializeLevels()
     {
         for (int i = 0; i < levels.Length; i++)
@@ -75,7 +86,10 @@ public class LevelManager : MonoBehaviour
 
         if (level.playButtonImage != null)
         {
-            level.playButtonImage.sprite = playButtonUnlockImage; 
+            level.playButtonImage.sprite = playButtonUnlockImage;
+            startingLevel++;
+            levels[startingLevel].
+                playButton.onClick.AddListener(GetGamePlayScene);
         }
     }
 

@@ -49,8 +49,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rb2d: {fileID: 0}
   direction: {x: 0, y: 0, z: 0}
-  _speed: 2500
-  _destroyDelay: 10
+  _speed: 8000
+  _destroyDelay: 13
   _damage: 25
 --- !u!61 &-2622331445772591274
 BoxCollider2D:
@@ -86,7 +86,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.45733473, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -96,7 +96,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.9507849, y: 0.44233328}
+  m_Size: {x: 1.0361154, y: 0.44233328}
   m_EdgeRadius: 0
 --- !u!50 &6306570214991128301
 Rigidbody2D:
