@@ -37,18 +37,8 @@ public class EnemyAnimController : MonoBehaviour
         isWalkingHash = Animator.StringToHash("isWalking");
     }
 
-    void Start()
-    {
-
-    }
-
     void Update()
     {
         _animatorFoot.SetBool(isWalkingHash, isWalking);
-    }
-
-    public void SwitchState(IAnimState state)
-    {
-
     }
 }

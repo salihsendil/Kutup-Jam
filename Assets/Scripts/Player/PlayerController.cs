@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour, IShootable
 
     [Header("Movement Variables")]
     [SerializeField] private Vector3 _movementVector;
-    [SerializeField] private float _speed = 6f;
+    [SerializeField] private float _speed = 3f;
 
     [Header("Rotation Variables")]
     [SerializeField] private float _rotationOffset;
