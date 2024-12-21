@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36f059648345558489556110ec9efaaf, type: 3}
   m_Name: Item3
   m_EditorClassIdentifier: 
-  itemKey: Level3Item3
-  updatedSprite: {fileID: 21300000, guid: 3656be0eee28e394993f0714db439ba5, type: 3}
-  requiredWood: 9
-  requiredWater: 13
-  requiredIron: 2
-  requiredSeeds: 0
+  itemKey: Level4Item3
+  updatedSprite: {fileID: 21300000, guid: 2f750c297c7cdf542a351b8afd2479ca, type: 3}
+  requiredWood: 25
+  requiredWater: 12
+  requiredIron: 18
+  requiredSeeds: 16

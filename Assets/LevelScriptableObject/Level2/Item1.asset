@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Item1
   m_EditorClassIdentifier: 
   itemKey: Level2Item1
-  updatedSprite: {fileID: 21300000, guid: ec217abe64f1a27418a809456a7e27f7, type: 3}
+  updatedSprite: {fileID: 21300000, guid: 6d8fa8dcbf263d24daaae5d9807b960c, type: 3}
   requiredWood: 15
   requiredWater: 7
   requiredIron: 0
