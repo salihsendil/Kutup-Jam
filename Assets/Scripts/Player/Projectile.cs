@@ -5,7 +5,7 @@ public class Projectile : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D _rb2d;
     [SerializeField] private Vector3 direction;
-    [SerializeField] private float _speed = 300f;
+    [SerializeField] private float _speed = 2500f;
     [SerializeField] private float _destroyDelay = 5f;
     [SerializeField] private int _damage = 25;
 
@@ -32,6 +32,7 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.GetComponent<PlayerController>() ) { return; }
         Destroy(gameObject);
     }
 

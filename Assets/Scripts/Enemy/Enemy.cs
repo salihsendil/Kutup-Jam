@@ -36,6 +36,12 @@ public class Enemy : MonoBehaviour, IShootable
     {
         EnemyAnimController.Instance.IsWalking = agent.speed != 0 ? true : false;
 
+        //if ((transform.position - agent.destination).magnitude<agent.stoppingDistance)
+        //{
+        //    agent.Stop();
+        //    EnemyAnimController.Instance.AnimatorBody.SetTrigger("isAttacking");
+        //}
+
         if (player != null)
         {
             agent.SetDestination(player.position);
@@ -54,18 +60,24 @@ public class Enemy : MonoBehaviour, IShootable
         {
             healthSystem.TakeDamage(other.GetComponent<Projectile>().Damage, gameObject);
         }
-    }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.GetComponent<PlayerController>())
+        if (other.gameObject.GetComponent<PlayerController>())
         {
-            PlayerAnimController.Instance.AnimatorBody.SetTrigger("isAttacking");
+            EnemyAnimController.Instance.AnimatorBody.SetBool(EnemyAnimController.Instance.IsAttackingHash, true);
         }
     }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        EnemyAnimController.Instance.AnimatorBody.SetBool(EnemyAnimController.Instance.IsAttackingHash, false);
+    }
+
+
     public void Shoot()
     {
-        PlayerController.Instance.GetComponent<HealthSystem>().TakeDamage(_damage, PlayerController.Instance.gameObject);
+        if (PlayerController.Instance.gameObject)
+        {
+            PlayerController.Instance.healthSystem.TakeDamage(_damage, PlayerController.Instance.gameObject);
+        }
     }
 }

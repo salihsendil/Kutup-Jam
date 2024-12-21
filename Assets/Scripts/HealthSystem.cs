@@ -26,7 +26,11 @@ public class HealthSystem : MonoBehaviour
     {
         if (_currentHealth <= 0)
         {
-            Destroy(obj);
+            if (obj.GetComponent<EnemyAnimController>())
+            {
+                EnemyAnimController.Instance.AnimatorBody.SetTrigger("isDeath");
+            }
+            Destroy(obj, 1f);
         }
     }
 
