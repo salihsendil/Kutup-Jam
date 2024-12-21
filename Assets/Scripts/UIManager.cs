@@ -19,10 +19,15 @@ public class UIManager : MonoBehaviour
       currentHealth = maxHealth;
       UpdateUI();
    }
-   public void TakeDamage(float damage)
+
+   private void Update()
    {
-      currentHealth -= damage;
-      currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); 
+      UpdateBar();
+   }
+
+   public void UpdateBar()
+   {
+      currentHealth = Mathf.Clamp(PlayerController.Instance.healthSystem.GetHealth(), 0, maxHealth); 
       UpdateHealthBarSmooth();
    }
 
