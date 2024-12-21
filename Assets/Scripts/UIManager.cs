@@ -12,9 +12,11 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI waterText;
     public TextMeshProUGUI ironText;
     public Image healthBar;
-    private float maxHealth = 100f;
-    public float healIncrease = 10f;
     public float currentHealth;
+    public float smoothSpeed = 2f;
+    private int incrementHealth = 10;
+    public float maxHealth = 100f;
+    private float targetFillAmount;
     private Coroutine currentFillCoroutine;
     [SerializeField] private GameObject _gameOverPanel;
     
@@ -22,10 +24,11 @@ public class UIManager : MonoBehaviour
     {
         UpdateUI();
         GameOverPanel(false);
-        currentHealth = PlayerController.Instance.health;
-        healthBar.fillAmount = currentHealth;
-        PlayerController.Instance.updatedHealth += Heal;
-        Enemy.OnDeath += UpdateBar;
+        currentHealth = PlayerController.Instance.healthSystem._currentHealth;
+        targetFillAmount = currentHealth / maxHealth; 
+        healthBar.fillAmount = targetFillAmount;
+        PlayerController.Instance.updatedHealth += IncreaseHealth;
+        Enemy.OnDeath += DecreaseHealth;
     }
 
     private void Update()
@@ -34,46 +37,23 @@ public class UIManager : MonoBehaviour
         {
             StartCoroutine(GameOverPanelDelay());
         }
-
-    }
-
-    public void UpdateBar()
-    {
-        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-        UpdateHealthBarSmooth();
-    }
-
-    public void Heal()
-    {
-        currentHealth += healIncrease;
-       
-        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-        healthBar.fillAmount = currentHealth;
-    }
-
-    private void UpdateHealthBarSmooth()
-    {
-        if (currentFillCoroutine != null)
+        if (healthBar != null)
         {
-            StopCoroutine(currentFillCoroutine);
-        }
-        currentFillCoroutine = StartCoroutine(SmoothFill(currentHealth / maxHealth));
-    }
-    private IEnumerator SmoothFill(float targetFill)
-    {
-        if (healthBar == null) yield break;
-
-        float startFill = healthBar.fillAmount;
-        float elapsed = 0f;
-
-        while (elapsed < 5)
-        {
-            elapsed += Time.deltaTime*30;
-            healthBar.fillAmount = Mathf.Lerp(startFill, targetFill, elapsed / 5);
-            yield return null;
+            healthBar.fillAmount = Mathf.Lerp(healthBar.fillAmount, targetFillAmount, smoothSpeed * Time.deltaTime);
         }
 
-        healthBar.fillAmount = targetFill;
+    }
+    public void DecreaseHealth()
+    {
+        currentHealth = Mathf.Clamp(currentHealth - incrementHealth, 0f, maxHealth);
+        targetFillAmount = currentHealth / maxHealth; 
+    }
+
+    public void IncreaseHealth()
+    {
+        currentHealth = Mathf.Clamp(currentHealth + incrementHealth, 0f, maxHealth);
+        targetFillAmount = currentHealth / maxHealth;
+        Debug.Log("Increased Health: " + currentHealth);
     }
     private void UpdateUI()
     {

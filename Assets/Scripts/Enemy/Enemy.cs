@@ -78,7 +78,7 @@ public class Enemy : MonoBehaviour, IShootable
         if (PlayerController.Instance.gameObject)
         {
             PlayerController.Instance.healthSystem.TakeDamage(_damage, PlayerController.Instance.gameObject);
-            if (PlayerController.Instance.healthSystem.GetHealth()<=0)
+            if (PlayerController.Instance.healthSystem.GetHealth()>0)
             {
                 OnDeath?.Invoke();
             }
