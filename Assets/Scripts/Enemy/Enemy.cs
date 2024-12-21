@@ -7,10 +7,12 @@ public class Enemy : MonoBehaviour
 {
     private NavMeshAgent agent;
     public Transform player;
-    public int health;
+    public int health = 100;
+    private HealthSystem healthSystem;
     private void Awake()
     {
         StartCoroutine(AssignPlayer());
+        healthSystem = new HealthSystem(health);
     }
     private IEnumerator AssignPlayer()
     {
@@ -33,6 +35,7 @@ public class Enemy : MonoBehaviour
         if (player != null)
         {
             agent.SetDestination(player.position);
+            EnemyAnimController.Instance.IsWalking = true;
             Vector3 direction = (player.position - transform.position).normalized;
             if (direction.magnitude > 0.1f)
             {

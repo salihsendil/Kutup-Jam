@@ -3,22 +3,35 @@ using UnityEngine;
 public class IdleState : IAnimState
 {
 
-    public void EnterState(PlayerAnimController playerAnimController)
+    public void EnterState(GameObject obj)
     {
 
     }
 
-    public void ExitState(PlayerAnimController playerAnimController)
+    public void ExitState(GameObject obj)
     {
 
     }
 
-    public void UpdateState(PlayerAnimController playerAnimController)
+    public void UpdateState(GameObject obj)
     {
-        if (playerAnimController.IsWalking)
+        if (obj.GetComponent<PlayerAnimController>())
         {
-            playerAnimController.SwitchState(new WalkState());
-            playerAnimController.AnimatorFoot.SetBool(playerAnimController.IsWalkingHash, true);
+            if (obj.GetComponent<PlayerAnimController>().IsWalking)
+            {
+                obj.GetComponent<PlayerAnimController>().SwitchState(new WalkState());
+                obj.GetComponent<PlayerAnimController>().AnimatorFoot.SetBool(obj.GetComponent<PlayerAnimController>().IsWalkingHash, true);
+            }
         }
+
+        if (obj.GetComponent<EnemyAnimController>())
+        {
+            if (obj.GetComponent<EnemyAnimController>().IsWalking)
+            {
+                obj.GetComponent<EnemyAnimController>().SwitchState(new WalkState());
+                obj.GetComponent<EnemyAnimController>().AnimatorFoot.SetBool(obj.GetComponent<EnemyAnimController>().IsWalkingHash, true);
+            }
+        }
+
     }
 }

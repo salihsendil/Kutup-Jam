@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 256299831168007109}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.75, y: -0.22, z: 0}
+  m_LocalPosition: {x: 0.55, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -145,6 +145,7 @@ MonoBehaviour:
   _rotationOffset: 0
   _canShoot: 1
   _shootDelay: 0.5
+  _shootingPoint: {fileID: 2532318869421055354}
 --- !u!114 &1483559057625479781
 MonoBehaviour:
   m_ObjectHideFlags: 0

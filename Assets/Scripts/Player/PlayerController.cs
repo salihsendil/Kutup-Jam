@@ -23,6 +23,11 @@ public class PlayerController : MonoBehaviour, IShootable
     [SerializeField] private float _shootDelay = 0.5f;
     [SerializeField] private Transform _shootingPoint;
 
+    [Header("Health Variables")]
+    [SerializeField] private int health = 100;
+    [SerializeField] private HealthSystem healthSystem;
+
+
     public Transform ShootingPoint { get => _shootingPoint; }
 
     private void Awake()
@@ -36,6 +41,7 @@ public class PlayerController : MonoBehaviour, IShootable
         Instance = this;
         DontDestroyOnLoad(gameObject);
         #endregion
+        healthSystem = new HealthSystem(health);
 
     }
 
