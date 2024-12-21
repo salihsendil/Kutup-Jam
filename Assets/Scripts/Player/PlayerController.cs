@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour, IShootable
 {
     public static PlayerController Instance { get; private set; }
+    public Action updatedHealth;
 
     [Header("References")]
     [SerializeField] private Transform _mainCamTransform;
@@ -50,6 +51,7 @@ public class PlayerController : MonoBehaviour, IShootable
     {
         _mainCamTransform = Camera.main.transform;
     }
+  
 
     void Update()
     {
@@ -59,6 +61,7 @@ public class PlayerController : MonoBehaviour, IShootable
         {
             Shoot();
         }
+
     }
 
     private void HandleMovement()
@@ -106,6 +109,15 @@ public class PlayerController : MonoBehaviour, IShootable
         PlayerAnimController.Instance.AnimatorBody.SetTrigger("isShooting");
         yield return new WaitForSeconds(_shootDelay);
         _canShoot = true;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.GetComponent<HealPowerUp>())
+        {
+            collision.gameObject.GetComponent<HealPowerUp>().Collect();
+            updatedHealth?.Invoke();
+        }
     }
 
 }

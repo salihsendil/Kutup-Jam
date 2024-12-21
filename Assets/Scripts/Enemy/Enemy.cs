@@ -56,7 +56,6 @@ public class Enemy : MonoBehaviour, IShootable
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("çarptým");
         if (other.GetComponent<Projectile>())
         {
             healthSystem.TakeDamage(other.GetComponent<Projectile>().Damage, gameObject);
@@ -73,10 +72,6 @@ public class Enemy : MonoBehaviour, IShootable
         EnemyAnimController.Instance.AnimatorBody.SetBool(EnemyAnimController.Instance.IsAttackingHash, false);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-
-    }
 
     public void Shoot()
     {

@@ -147,6 +147,7 @@ MonoBehaviour:
   _animatorFoot: {fileID: 0}
   isWalking: 0
   isWalkingHash: 0
+  isAttackingHash: 0
 --- !u!95 &3491222533108492045
 Animator:
   serializedVersion: 7
