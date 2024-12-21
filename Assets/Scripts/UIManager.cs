@@ -39,7 +39,11 @@ public class UIManager : MonoBehaviour
 
     public void UpdateBar()
     {
+<<<<<<< Updated upstream
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+=======
+        currentHealth = Mathf.Clamp(PlayerController.Instance.healthSystem.GetHealth(), 0, maxHealth);
+>>>>>>> Stashed changes
         UpdateHealthBarSmooth();
     }
 
