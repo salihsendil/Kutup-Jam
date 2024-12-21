@@ -44,13 +44,6 @@ public class UIManager : MonoBehaviour
 
     }
     public void DecreaseHealth()
-    public void UpdateBar()
-    {
-        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-        currentHealth = Mathf.Clamp(PlayerController.Instance.healthSystem.GetHealth(), 0, maxHealth);
-        UpdateHealthBarSmooth();
-    }
-    public void Heal()
     {
         currentHealth = Mathf.Clamp(currentHealth - incrementHealth, 0f, maxHealth);
         targetFillAmount = currentHealth / maxHealth; 
