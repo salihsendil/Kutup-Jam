@@ -3,12 +3,13 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IShootable
 {
     private NavMeshAgent agent;
     public Transform player;
     [SerializeField] private int health = 100;
     private HealthSystem healthSystem;
+    [SerializeField] private int _damage = 10;
 
     private void Awake()
     {
@@ -53,5 +54,18 @@ public class Enemy : MonoBehaviour
         {
             healthSystem.TakeDamage(other.GetComponent<Projectile>().Damage, gameObject);
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.GetComponent<PlayerController>())
+        {
+            PlayerAnimController.Instance.AnimatorBody.SetTrigger("isAttacking");
+        }
+    }
+
+    public void Shoot()
+    {
+        PlayerController.Instance.GetComponent<HealthSystem>().TakeDamage(_damage, PlayerController.Instance.gameObject);
     }
 }
