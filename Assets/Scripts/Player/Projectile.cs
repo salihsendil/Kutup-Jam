@@ -1,28 +1,30 @@
+using System.Collections;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    [SerializeField] private Vector3 _spawnPointOffset = new Vector3(0f, 0.4f, 0f);
-    [SerializeField] private float _speed = 10f;
     [SerializeField] private Rigidbody2D _rb2d;
-    [SerializeField] private Vector3 moveDir;
+    [SerializeField] private Vector3 direction;
+    [SerializeField] private float _speed = 300f;
+    [SerializeField] private float _destroyDelay = 5f;
 
     private void Update()
     {
-        //transform.position += moveDir * _speed * Time.deltaTime;
+        _rb2d.linearVelocity = direction * _speed * Time.deltaTime;
     }
 
     private void OnEnable()
     {
-        //Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //mousePosition.z = transform.position.z;
-        //moveDir = mousePosition - transform.position;
-        //moveDir.Normalize();
-        //transform.rotation = Quaternion.LookRotation(mousePosition);
-        //transform.position = PlayerController.Instance.transform.position + _spawnPointOffset;
+        _rb2d = GetComponent<Rigidbody2D>();
 
-        ////transform.Translate(mousePosition - transform.position);
-        ////Vector3.MoveTowards(transform.position, mousePosition, 10f);
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePosition.z = 0f;
+        direction = (mousePosition - transform.position).normalized;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f, 0f, angle);
+        transform.position = PlayerController.Instance.ShootingPoint.position;
+        StartCoroutine(DestroyObjectAfterDelay());
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -33,6 +35,12 @@ public class Projectile : MonoBehaviour
     private void OnDisable()
     {
 
+    }
+
+    IEnumerator DestroyObjectAfterDelay()
+    {
+        yield return new WaitForSeconds(_destroyDelay);
+        ObjectPoolingManager.Instance.GetBackProjectileToPool(gameObject);
     }
 
 }

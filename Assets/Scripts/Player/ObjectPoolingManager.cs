@@ -84,12 +84,9 @@ public class ObjectPoolingManager : MonoBehaviour
     {
         if (prefab!=null)
         {
-            for (int i = 0; i < size; i++)
-            {
-                GameObject obj = Instantiate(prefab);
-                queue.Enqueue(obj);
-                prefab.gameObject.SetActive(false);
-            }
+            GameObject obj = Instantiate(prefab, transform.position, Quaternion.identity);
+            queue.Enqueue(obj);
+            prefab.gameObject.SetActive(false);
         }
     }
 }
