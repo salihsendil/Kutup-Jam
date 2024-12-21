@@ -13,10 +13,9 @@ public class Item : MonoBehaviour
     
     private void Start()
     {
-        
-        itemImage=GetComponent<Image>();
-        itemButton=GetComponent<Button>();
         resourceLayout= transform.GetChild(0);
+        itemImage=transform.GetChild(1).transform.GetComponent<Image>();
+        itemButton=resourceLayout.gameObject.GetComponent<Button>();
         LoadItemState();
         itemButton.onClick.AddListener(OnItemButtonClicked);
         UpdateResourceDisplay();
@@ -26,6 +25,7 @@ public class Item : MonoBehaviour
     {
         if (ResourceManager.Instance.HasEnoughResources(itemRequirement))
         {
+            itemImage.gameObject.SetActive(true);
             itemImage.sprite = itemRequirement.updatedSprite;
             ConsumeAllResources(); 
             MarkAsCompleted();
@@ -42,6 +42,7 @@ public class Item : MonoBehaviour
         if (IsCompleted())
         {
             itemImage.sprite = itemRequirement.updatedSprite;
+            itemImage.gameObject.SetActive(true);
             resourceLayout.gameObject.SetActive(false);
         }
     }

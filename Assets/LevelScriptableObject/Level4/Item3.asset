@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 36f059648345558489556110ec9efaaf, type: 3}
-  m_Name: Item2
+  m_Name: Item3
   m_EditorClassIdentifier: 
-  itemKey: Level4Item2
-  updatedSprite: {fileID: 21300000, guid: ebf23a33789631f429380525030f7882, type: 3}
-  requiredWood: 25
-  requiredWater: 0
+  itemKey: Level4Item3
+  updatedSprite: {fileID: 21300000, guid: 2f750c297c7cdf542a351b8afd2479ca, type: 3}
+  requiredWood: 0
+  requiredWater: 12
   requiredIron: 18
   requiredSeeds: 16
