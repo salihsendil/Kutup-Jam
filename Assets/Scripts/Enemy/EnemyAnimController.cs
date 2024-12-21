@@ -35,24 +35,20 @@ public class EnemyAnimController : MonoBehaviour
         _animatorFoot = transform.GetChild(0).GetComponent<Animator>();
 
         isWalkingHash = Animator.StringToHash("isWalking");
-
     }
 
     void Start()
     {
-        _currentState = new IdleState();
-        _currentState.EnterState(gameObject);
+
     }
 
     void Update()
     {
-        _currentState.UpdateState(gameObject);
+        _animatorFoot.SetBool(isWalkingHash, isWalking);
     }
 
     public void SwitchState(IAnimState state)
     {
-        _currentState.ExitState(gameObject);
-        _currentState = state;
-        _currentState.EnterState(gameObject);
+
     }
 }

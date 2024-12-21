@@ -7,6 +7,9 @@ public class Projectile : MonoBehaviour
     [SerializeField] private Vector3 direction;
     [SerializeField] private float _speed = 300f;
     [SerializeField] private float _destroyDelay = 5f;
+    [SerializeField] private int _damage = 25;
+
+    public int Damage { get => _damage; }
 
     private void Update()
     {
@@ -16,20 +19,20 @@ public class Projectile : MonoBehaviour
     private void OnEnable()
     {
         _rb2d = GetComponent<Rigidbody2D>();
+        transform.position = PlayerController.Instance.ShootingPoint.position;
 
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePosition.z = 0f;
         direction = (mousePosition - transform.position).normalized;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, angle);
-        transform.position = PlayerController.Instance.ShootingPoint.position;
         StartCoroutine(DestroyObjectAfterDelay());
 
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
+        Destroy(gameObject);
     }
 
     private void OnDisable()

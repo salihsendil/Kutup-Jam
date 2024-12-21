@@ -83,7 +83,7 @@ public class PlayerController : MonoBehaviour, IShootable
     private void HandleRotation()
     {
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mousePosition.z = transform.position.z;
+        mousePosition.z = 0f;
 
         Vector3 direction = mousePosition - transform.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;

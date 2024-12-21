@@ -15,17 +15,18 @@ public class HealthSystem : MonoBehaviour
         return _currentHealth;
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, GameObject obj)
     {
         _currentHealth -= damage;
-        Die();
+        Debug.Log("health:" + _currentHealth);
+        Die(obj);
     }
 
-    void Die()
+    void Die(GameObject obj)
     {
-        if (_currentHealth < 0)
+        if (_currentHealth <= 0)
         {
-            Destroy(gameObject);
+            Destroy(obj);
         }
     }
 

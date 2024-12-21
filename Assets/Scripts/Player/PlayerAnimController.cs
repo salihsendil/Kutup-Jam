@@ -41,19 +41,19 @@ public class PlayerAnimController : MonoBehaviour
     void Start()
     {
         _currentState = new IdleState();
-        _currentState.EnterState(gameObject);
+        _currentState.EnterState(this);
     }
 
     void Update()
     {
-        _currentState.UpdateState(gameObject);
+        _currentState.UpdateState(this);
     }
 
     public void SwitchState(IAnimState state)
     {
-        _currentState.ExitState(gameObject);
+        _currentState.ExitState(this);
         _currentState = state;
-        _currentState.EnterState(gameObject);
+        _currentState.EnterState(this);
     }
 
 }
