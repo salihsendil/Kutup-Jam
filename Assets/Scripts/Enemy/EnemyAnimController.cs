@@ -12,12 +12,14 @@ public class EnemyAnimController : MonoBehaviour
     [Header("Animation Variables")]
     [SerializeField] private bool isWalking;
     [SerializeField] private int isWalkingHash;
+    [SerializeField] private int isAttackingHash;
 
     [Header("Getters - Setters")]
     public bool IsWalking { get => isWalking; set => isWalking = value; }
     public Animator AnimatorBody { get => _animatorBody; }
     public Animator AnimatorFoot { get => _animatorFoot; }
     public int IsWalkingHash { get => isWalkingHash; }
+    public int IsAttackingHash { get => isAttackingHash; set => isAttackingHash = value; }
 
     private void Awake()
     {
@@ -35,6 +37,7 @@ public class EnemyAnimController : MonoBehaviour
         _animatorFoot = transform.GetChild(0).GetComponent<Animator>();
 
         isWalkingHash = Animator.StringToHash("isWalking");
+        isAttackingHash = Animator.StringToHash("isAttacking");
     }
 
     void Update()
