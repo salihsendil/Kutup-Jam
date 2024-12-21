@@ -14,28 +14,22 @@ public class UIManager : MonoBehaviour
     public Image healthBar;
     private float maxHealth = 100f;
     public float healIncrease = 10f;
-    private float currentHealth;
+    public float currentHealth;
     private Coroutine currentFillCoroutine;
     [SerializeField] private GameObject _gameOverPanel;
-
-    private void OnEnable()
-    {
-        PlayerController.Instance.updatedHealth += Heal;
-    }
-    private void OnDisable()
-    {
-        PlayerController.Instance.updatedHealth -= Heal;
-    }
+    
     private void Start()
     {
-        currentHealth = maxHealth;
         UpdateUI();
         GameOverPanel(false);
+        currentHealth = PlayerController.Instance.health;
+        healthBar.fillAmount = currentHealth;
+        PlayerController.Instance.updatedHealth += Heal;
+        Enemy.OnDeath += UpdateBar;
     }
 
     private void Update()
     {
-        UpdateBar();
         if (currentHealth <= 0)
         {
             StartCoroutine(GameOverPanelDelay());
@@ -45,16 +39,16 @@ public class UIManager : MonoBehaviour
 
     public void UpdateBar()
     {
-        currentHealth = Mathf.Clamp(PlayerController.Instance.healthSystem.GetHealth(), 0, maxHealth);
-        Debug.Log(currentHealth);
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         UpdateHealthBarSmooth();
     }
 
     public void Heal()
     {
         currentHealth += healIncrease;
+       
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-        UpdateHealthBarSmooth();
+        healthBar.fillAmount = currentHealth;
     }
 
     private void UpdateHealthBarSmooth()
@@ -74,7 +68,7 @@ public class UIManager : MonoBehaviour
 
         while (elapsed < 5)
         {
-            elapsed += Time.deltaTime;
+            elapsed += Time.deltaTime*30;
             healthBar.fillAmount = Mathf.Lerp(startFill, targetFill, elapsed / 5);
             yield return null;
         }

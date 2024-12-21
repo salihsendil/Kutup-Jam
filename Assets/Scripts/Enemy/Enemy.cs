@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour, IShootable
     [SerializeField] private int health = 100;
     private HealthSystem healthSystem;
     [SerializeField] private int _damage = 10;
-
+    public static Action OnDeath;
     private void Awake()
     {
         StartCoroutine(AssignPlayer());
@@ -78,6 +78,10 @@ public class Enemy : MonoBehaviour, IShootable
         if (PlayerController.Instance.gameObject)
         {
             PlayerController.Instance.healthSystem.TakeDamage(_damage, PlayerController.Instance.gameObject);
+            if (PlayerController.Instance.healthSystem.GetHealth()<=0)
+            {
+                OnDeath?.Invoke();
+            }
         }
     }
 }
