@@ -18,11 +18,9 @@ public class HealthSystem : MonoBehaviour
     public void TakeDamage(int damage, GameObject obj)
     {
         _currentHealth -= damage;
-        Debug.Log("health:" + _currentHealth);
-        Die(obj);
     }
 
-    void Die(GameObject obj)
+    public void Die(GameObject obj)
     {
         if (_currentHealth <= 0)
         {
@@ -33,6 +31,8 @@ public class HealthSystem : MonoBehaviour
             Destroy(obj, 1f);
         }
     }
+
+    
 
     public void HealUp(int healAmount)
     {

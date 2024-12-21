@@ -25,11 +25,17 @@ public class PlayerController : MonoBehaviour, IShootable
     [SerializeField] private Transform _shootingPoint;
 
     [Header("Health Variables")]
+<<<<<<< Updated upstream
     public int health = 100;
+=======
+    [SerializeField] private int health = 100;
+    [SerializeField] private int _currentHealth = 100;
+>>>>>>> Stashed changes
     public HealthSystem healthSystem;
 
 
     public Transform ShootingPoint { get => _shootingPoint; }
+    public int CurrentHealth { get => _currentHealth; set => _currentHealth = value; }
 
     private void Awake()
     {
@@ -42,6 +48,12 @@ public class PlayerController : MonoBehaviour, IShootable
         Instance = this;
         DontDestroyOnLoad(gameObject);
         #endregion
+<<<<<<< Updated upstream
+=======
+        healthSystem = new HealthSystem(health);
+        _currentHealth = healthSystem.GetHealth();
+
+>>>>>>> Stashed changes
     }
 
 
@@ -49,7 +61,7 @@ public class PlayerController : MonoBehaviour, IShootable
     {
         _mainCamTransform = Camera.main.transform;
     }
-  
+
 
     void Update()
     {
@@ -58,6 +70,11 @@ public class PlayerController : MonoBehaviour, IShootable
         if (PlayerInputManager.Instance.IsShooting)
         {
             Shoot();
+        }
+
+        if (healthSystem.GetHealth() <= 0)
+        {
+            healthSystem.Die(gameObject);
         }
 
     }

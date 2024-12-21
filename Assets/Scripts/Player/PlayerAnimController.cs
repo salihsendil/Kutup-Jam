@@ -47,6 +47,12 @@ public class PlayerAnimController : MonoBehaviour
     void Update()
     {
         _currentState.UpdateState(this);
+
+        if (GetComponent<PlayerController>().CurrentHealth<=0)
+        {
+            _animatorBody.SetTrigger("isDeath");
+        }
+
     }
 
     public void SwitchState(IAnimState state)

@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.AI;
+using System;
 
 public class ObjectPoolingManager : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class ObjectPoolingManager : MonoBehaviour
     private Queue<GameObject> _projectileList;
     private Queue<GameObject> _enemyList;
     [SerializeField] private float navMeshSampleDistance = 1.0f;
+
+    public Action<Transform> OnEnemyGetBackPool;
 
 
 
@@ -46,7 +49,6 @@ public class ObjectPoolingManager : MonoBehaviour
         {
             GameObject obj = _projectileList.Dequeue();
             obj.gameObject.SetActive(true);
-            Debug.Log(_projectileList.Count);
         }
     }
     public GameObject GetEnemyFromPool(Vector3 spawnPosition)
@@ -64,7 +66,7 @@ public class ObjectPoolingManager : MonoBehaviour
             }
             else
             {
-                ReturnEnemyToPool(enemy);
+                //ReturnEnemyToPool(enemy);
                 return null;
             }
         }
@@ -75,6 +77,7 @@ public class ObjectPoolingManager : MonoBehaviour
     {
         enemy.SetActive(false);
         _enemyList.Enqueue(enemy);
+        OnEnemyGetBackPool?.Invoke(enemy.transform);
     }
     public void GetBackProjectileToPool(GameObject obj)
     {
