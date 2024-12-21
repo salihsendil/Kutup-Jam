@@ -3,7 +3,7 @@ using UnityEngine;
 public class HealthSystem : MonoBehaviour
 {
     [SerializeField] private int _maxHealth;
-    [SerializeField] private int _currentHealth;
+    public int _currentHealth;
 
     public HealthSystem(int healthAmount)
     {
@@ -26,7 +26,11 @@ public class HealthSystem : MonoBehaviour
     {
         if (_currentHealth <= 0)
         {
-            Destroy(obj);
+            if (obj.GetComponent<EnemyAnimController>())
+            {
+                EnemyAnimController.Instance.AnimatorBody.SetTrigger("isDeath");
+            }
+            Destroy(obj, 1f);
         }
     }
 

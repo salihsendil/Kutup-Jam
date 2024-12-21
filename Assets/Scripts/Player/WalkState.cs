@@ -15,7 +15,10 @@ public class WalkState : IAnimState
 
     public void UpdateState(PlayerAnimController player)
     {
-        player.SwitchState(new WalkState());
-        player.AnimatorFoot.SetBool(player.IsWalkingHash, true);
+        if (!player.IsWalking)
+        {
+            player.SwitchState(new IdleState());
+            player.AnimatorFoot.SetBool(player.IsWalkingHash, true);
+        }
     }
 }

@@ -7,7 +7,7 @@ public class PlayerInputManager : MonoBehaviour
     public static PlayerInputManager Instance { get; private set; }
 
     [Header("References")]
-    private PlayerInput _playerInput;
+    [SerializeField] public PlayerInput _playerInput;
 
     [Header("Movement Variables")]
     private Vector2 _movementInput;
@@ -30,7 +30,6 @@ public class PlayerInputManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
         #endregion
-
         _playerInput = new PlayerInput();
 
     }

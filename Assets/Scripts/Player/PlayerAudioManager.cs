@@ -11,17 +11,21 @@ public class PlayerAudioManager : MonoBehaviour
     private void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
+        _footstepSfxList = new List<AudioClip>();
+        _shootSfxList = new List<AudioClip>();
     }
 
     public void GetRandomShootSfx()
     {
-        int random = Random.Range(0, _shootSfxList.Count);
+        if (_shootSfxList.Count <= 0) { return; }
+        int random = Random.Range(0, _shootSfxList.Count - 1);
         _audioSource.PlayOneShot(_shootSfxList[random]);
     }
 
     public void GetRandomFootstepSfx()
     {
-        int random = Random.Range(0, _footstepSfxList.Count);
+        if (_footstepSfxList.Count <= 0) { return; }
+        int random = Random.Range(0, _footstepSfxList.Count - 1);
         _audioSource.PlayOneShot(_footstepSfxList[random]);
     }
 

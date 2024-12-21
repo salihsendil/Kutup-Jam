@@ -3,65 +3,77 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
-   public TextMeshProUGUI woodText;
-   public TextMeshProUGUI seedText;
-   public TextMeshProUGUI waterText;
-   public TextMeshProUGUI ironText;
-   public Image healthBar;
-   private float maxHealth = 100f;
-   private float currentHealth;
-   private Coroutine currentFillCoroutine;
-   private void Start()
-   {
-      currentHealth = maxHealth;
-      UpdateUI();
-   }
-   public void TakeDamage(float damage)
-   {
-      currentHealth -= damage;
-      currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); 
-      UpdateHealthBarSmooth();
-   }
+    public TextMeshProUGUI woodText;
+    public TextMeshProUGUI seedText;
+    public TextMeshProUGUI waterText;
+    public TextMeshProUGUI ironText;
+    public Image healthBar;
+    public float currentHealth;
+    public float smoothSpeed = 2f;
+    private int incrementHealth = 10;
+    public float maxHealth = 100f;
+    private float targetFillAmount;
+    private Coroutine currentFillCoroutine;
+    [SerializeField] private GameObject _gameOverPanel;
+    
+    private void Start()
+    {
+        UpdateUI();
+        GameOverPanel(false);
+        currentHealth = PlayerController.Instance.healthSystem._currentHealth;
+        targetFillAmount = currentHealth / maxHealth; 
+        healthBar.fillAmount = targetFillAmount;
+        PlayerController.Instance.updatedHealth += IncreaseHealth;
+        Enemy.OnDeath += DecreaseHealth;
+    }
 
-   public void Heal(float healAmount)
-   {
-      currentHealth += healAmount;
-      currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); 
-      UpdateHealthBarSmooth();
-   }
+    private void Update()
+    {
+        if (currentHealth <= 0)
+        {
+            StartCoroutine(GameOverPanelDelay());
+        }
+        if (healthBar != null)
+        {
+            healthBar.fillAmount = Mathf.Lerp(healthBar.fillAmount, targetFillAmount, smoothSpeed * Time.deltaTime);
+        }
 
-   private void UpdateHealthBarSmooth()
-   {
-      if (currentFillCoroutine != null)
-      {
-         StopCoroutine(currentFillCoroutine);
-      }
-      currentFillCoroutine = StartCoroutine(SmoothFill(currentHealth / maxHealth));
-   }
-   private IEnumerator SmoothFill(float targetFill)
-   {
-      if (healthBar == null) yield break;
+    }
+    public void DecreaseHealth()
+    {
+        currentHealth = Mathf.Clamp(currentHealth - incrementHealth, 0f, maxHealth);
+        targetFillAmount = currentHealth / maxHealth; 
+    }
 
-      float startFill = healthBar.fillAmount;
-      float elapsed = 0f;
+    public void IncreaseHealth()
+    {
+        currentHealth = Mathf.Clamp(currentHealth + incrementHealth, 0f, maxHealth);
+        targetFillAmount = currentHealth / maxHealth;
+        Debug.Log("Increased Health: " + currentHealth);
+    }
+    private void UpdateUI()
+    {
+        woodText.text = PlayerPrefs.GetInt("Wood", 0).ToString();
+        waterText.text = PlayerPrefs.GetInt("Water", 0).ToString();
+        ironText.text = PlayerPrefs.GetInt("Iron", 0).ToString();
+        seedText.text = PlayerPrefs.GetInt("Seeds", 0).ToString();
+    }
 
-      while (elapsed < 5)
-      {
-         elapsed += Time.deltaTime;
-         healthBar.fillAmount = Mathf.Lerp(startFill, targetFill, elapsed / 5);
-         yield return null;
-      }
+    private void GameOverPanel(bool boolean)
+    {
+        _gameOverPanel.SetActive(boolean);
 
-      healthBar.fillAmount = targetFill; 
-   }
-   private void UpdateUI()
-   {
-      woodText.text = "Wood: " + PlayerPrefs.GetInt("wood");
-      seedText.text = "Seed: " + PlayerPrefs.GetInt("seed");
-      waterText.text = "Water: " + PlayerPrefs.GetInt("water");
-      ironText.text = "Iron: " + PlayerPrefs.GetInt("iron");
-   }
+    }
+
+    IEnumerator GameOverPanelDelay()
+    {
+        GameOverPanel(true);
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
 }
