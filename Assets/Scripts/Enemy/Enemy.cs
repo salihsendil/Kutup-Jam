@@ -11,6 +11,10 @@ public class Enemy : MonoBehaviour, IShootable
     private HealthSystem healthSystem;
     [SerializeField] private int _damage = 10;
     public static Action OnDeath;
+    public Action<Transform> OnEnemyDeathActionForDropItem;
+
+    public HealthSystem HealthSystem { get => healthSystem; }
+
     private void Awake()
     {
         StartCoroutine(AssignPlayer());

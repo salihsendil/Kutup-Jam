@@ -66,7 +66,7 @@ public class ObjectPoolingManager : MonoBehaviour
             }
             else
             {
-                //ReturnEnemyToPool(enemy);
+                ReturnEnemyToPool(enemy);
                 return null;
             }
         }
@@ -77,7 +77,10 @@ public class ObjectPoolingManager : MonoBehaviour
     {
         enemy.SetActive(false);
         _enemyList.Enqueue(enemy);
-        OnEnemyGetBackPool?.Invoke(enemy.transform);
+        if (enemy.GetComponent<Enemy>().HealthSystem._currentHealth <= 0)
+        {
+            OnEnemyGetBackPool?.Invoke(enemy.transform);
+        }
     }
     public void GetBackProjectileToPool(GameObject obj)
     {
@@ -96,4 +99,5 @@ public class ObjectPoolingManager : MonoBehaviour
             }
         }
     }
+
 }
