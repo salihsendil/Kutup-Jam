@@ -2,7 +2,7 @@ using UnityEngine;
 
 public interface IAnimState
 {
-    void EnterState(PlayerAnimController playerAnimController);
-    void UpdateState(PlayerAnimController playerAnimController);
-    void ExitState(PlayerAnimController playerAnimController);
+    void EnterState(PlayerAnimController player);
+    void UpdateState(PlayerAnimController player);
+    void ExitState(PlayerAnimController player);
 }

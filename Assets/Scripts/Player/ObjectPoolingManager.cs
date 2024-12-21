@@ -32,11 +32,12 @@ public class ObjectPoolingManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
         #endregion
+
         _enemyList = new Queue<GameObject>();
         _projectileList = new Queue<GameObject>();
         FillThePools(PROJECTILE_POOL_SIZE, _projectilePrefab, _projectileList);
         FillThePools(ENEMY_POOL_SIZE, _enemyPrefab, _enemyList);
-     
+
     }
 
     public void GetOutProjectileFromPool()
@@ -82,11 +83,11 @@ public class ObjectPoolingManager : MonoBehaviour
     }
     private void FillThePools(int size, GameObject prefab, Queue<GameObject> queue)
     {
-        if (prefab!=null)
+        if (prefab != null)
         {
             for (int i = 0; i < size; i++)
             {
-                GameObject obj = Instantiate(prefab);
+                GameObject obj = Instantiate(prefab, transform.position, Quaternion.identity);
                 queue.Enqueue(obj);
                 prefab.gameObject.SetActive(false);
             }

@@ -7,10 +7,13 @@ public class Enemy : MonoBehaviour
 {
     private NavMeshAgent agent;
     public Transform player;
-    public int health;
+    [SerializeField] private int health = 100;
+    private HealthSystem healthSystem;
+
     private void Awake()
     {
         StartCoroutine(AssignPlayer());
+        healthSystem = new HealthSystem(health);
     }
     private IEnumerator AssignPlayer()
     {
@@ -30,6 +33,8 @@ public class Enemy : MonoBehaviour
     }
     private void Update()
     {
+        EnemyAnimController.Instance.IsWalking = agent.speed != 0 ? true : false;
+
         if (player != null)
         {
             agent.SetDestination(player.position);
@@ -39,6 +44,14 @@ public class Enemy : MonoBehaviour
                 float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
                 transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
             }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.GetComponent<Projectile>())
+        {
+            healthSystem.TakeDamage(other.GetComponent<Projectile>().Damage, gameObject);
         }
     }
 }
