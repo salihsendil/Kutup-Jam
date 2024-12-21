@@ -21,4 +21,13 @@ public class CollectiableItems : MonoBehaviour
         Destroy(gameObject);
         return Name;
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.GetComponent<PlayerController>())
+        {
+            Collect();
+        }
+    }
+
 }
