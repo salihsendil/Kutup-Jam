@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemKey: Level4Item3
   updatedSprite: {fileID: 21300000, guid: 2f750c297c7cdf542a351b8afd2479ca, type: 3}
-  requiredWood: 25
+  requiredWood: 0
   requiredWater: 12
   requiredIron: 18
   requiredSeeds: 16
