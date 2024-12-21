@@ -11,6 +11,10 @@ public class Enemy : MonoBehaviour, IShootable
     private HealthSystem healthSystem;
     [SerializeField] private int _damage = 10;
     public static Action OnDeath;
+    public Action<Transform> OnEnemyDeathActionForDropItem;
+
+    public HealthSystem HealthSystem { get => healthSystem; }
+
     private void Awake()
     {
         StartCoroutine(AssignPlayer());
@@ -35,13 +39,6 @@ public class Enemy : MonoBehaviour, IShootable
     private void Update()
     {
         EnemyAnimController.Instance.IsWalking = agent.speed != 0 ? true : false;
-
-        //if ((transform.position - agent.destination).magnitude<agent.stoppingDistance)
-        //{
-        //    agent.Stop();
-        //    EnemyAnimController.Instance.AnimatorBody.SetTrigger("isAttacking");
-        //}
-
         if (player != null)
         {
             agent.SetDestination(player.position);
@@ -59,6 +56,10 @@ public class Enemy : MonoBehaviour, IShootable
         if (other.GetComponent<Projectile>())
         {
             healthSystem.TakeDamage(other.GetComponent<Projectile>().Damage, gameObject);
+            if (healthSystem.GetHealth() <= 0)
+            {
+                ObjectPoolingManager.Instance.ReturnEnemyToPool(gameObject);
+            }
         }
 
         if (other.gameObject.GetComponent<PlayerController>())
@@ -84,4 +85,5 @@ public class Enemy : MonoBehaviour, IShootable
             }
         }
     }
+
 }

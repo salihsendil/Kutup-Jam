@@ -24,11 +24,13 @@ public class LevelManager : MonoBehaviour
     public bool resetLevels = true;
     public GameObject gamePlayScene;
     public GameObject levelScene;
+    public GameObject completedLevelImage;
     private void Start()
     {
         InitializeLevels();
-        levels[startingLevel].
+        levels[startingLevel-1].
             playButton.onClick.AddListener(GetGamePlayScene);
+        GetLevelCompletedImage();
     }
 
     private void GetGamePlayScene()
@@ -36,7 +38,14 @@ public class LevelManager : MonoBehaviour
         gamePlayScene.SetActive(true);
         levelScene.SetActive(false);
     }
-    
+
+    private void GetLevelCompletedImage()
+    {
+        if (IsLevelCompleted(levels[3]))
+        {
+            completedLevelImage.SetActive(true);
+        }
+    }
     private void InitializeLevels()
     {
         for (int i = 0; i < levels.Length; i++)
@@ -59,9 +68,17 @@ public class LevelManager : MonoBehaviour
         {
             if (IsLevelCompleted(levels[i]))
             {
-                UnlockLevel(levels[i + 1]);
+                if (levels.Length>startingLevel)
+                {
+                    levels[startingLevel+1].
+                        playButton.onClick.AddListener(GetGamePlayScene);
+                    UnlockLevel(levels[i + 1]);
+                    Debug.Log( levels[startingLevel+1]);
+                }
             }
         }
+
+        GetLevelCompletedImage();
     }
 
     private bool IsLevelCompleted(Level level)
@@ -87,9 +104,13 @@ public class LevelManager : MonoBehaviour
         if (level.playButtonImage != null)
         {
             level.playButtonImage.sprite = playButtonUnlockImage;
-            startingLevel++;
-            levels[startingLevel].
-                playButton.onClick.AddListener(GetGamePlayScene);
+
+            if (startingLevel > 1 && startingLevel<levels.Length )
+            {
+                levels[startingLevel-1].
+                    playButton.onClick.AddListener(GetGamePlayScene);
+                startingLevel++;
+            }
         }
     }
 
