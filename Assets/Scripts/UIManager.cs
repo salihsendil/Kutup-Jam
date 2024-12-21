@@ -64,9 +64,9 @@ public class UIManager : MonoBehaviour
    }
    private void UpdateUI()
    {
-      woodText.text = "Wood: " + PlayerPrefs.GetInt("wood");
-      seedText.text = "Seed: " + PlayerPrefs.GetInt("seed");
-      waterText.text = "Water: " + PlayerPrefs.GetInt("water");
-      ironText.text = "Iron: " + PlayerPrefs.GetInt("iron");
+      woodText.text = PlayerPrefs.GetInt("Wood", 0).ToString();
+      waterText.text = PlayerPrefs.GetInt("Water", 0).ToString();
+      ironText.text = PlayerPrefs.GetInt("Iron", 0).ToString();
+      seedText.text  = PlayerPrefs.GetInt("Seeds", 0).ToString();
    }
 }
