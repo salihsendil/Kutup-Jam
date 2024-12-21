@@ -56,19 +56,20 @@ public class PlayerController : MonoBehaviour, IShootable
     private void HandleMovement()
     {
         //rotation relative movement
-        _movementVector = PlayerInputManager.Instance.MovementInput;
-        _movementVector = _movementVector.y * _playerLookTo.transform.up + _movementVector.x * _playerLookTo.transform.right;
-        _movementVector.z = 0f;
-        transform.position += _movementVector * _speed * Time.deltaTime;
+        //_movementVector = PlayerInputManager.Instance.MovementInput;
+        //_movementVector = _movementVector.y * _playerLookTo.transform.up + _movementVector.x * _playerLookTo.transform.right;
+        //_movementVector.z = 0f;
+        //transform.position += _movementVector * _speed * Time.deltaTime;
         //Debug.Log(_playerLookTo.transform.up.y);
 
         //universal movement
-        //_mainCamTransform = Camera.main.transform;
-        //_movementVector = PlayerInputManager.Instance.MovementInput;
-        //_movementVector.x = _movementVector.x * _mainCamTransform.right.x;
-        //_movementVector.y = _movementVector.y * _mainCamTransform.up.y;
-        //_movementVector.z = 0f;
-        //transform.position += _movementVector * _speed * Time.deltaTime;
+        _mainCamTransform = Camera.main.transform;
+        _movementVector = PlayerInputManager.Instance.MovementInput;
+        _movementVector.x = _movementVector.x * _mainCamTransform.right.x;
+        _movementVector.y = _movementVector.y * _mainCamTransform.up.y;
+        _movementVector.z = 0f;
+        PlayerAnimController.Instance.IsWalking = _movementVector != Vector3.zero ? true : false;
+        transform.position += _movementVector * _speed * Time.deltaTime;
     }
 
     private void HandleRotation()
@@ -94,6 +95,7 @@ public class PlayerController : MonoBehaviour, IShootable
     {
         ObjectPoolingManager.Instance.GetOutProjectileFromPool();
         _canShoot = false;
+        PlayerAnimController.Instance.AnimatorBody.SetTrigger("isShooting");
         yield return new WaitForSeconds(_shootDelay);
         _canShoot = true;
     }

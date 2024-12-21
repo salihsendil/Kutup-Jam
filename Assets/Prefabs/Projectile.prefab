@@ -102,8 +102,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f4633a1294e7d044b5b349bb0f40731, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawnPointOffset: {x: 0, y: 0.4, z: 0}
+  _spawnPointOffset: {x: 0, y: 1, z: 0}
   _speed: 10
+  _rb2d: {fileID: 0}
 --- !u!61 &-2622331445772591274
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -176,4 +177,4 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 0
