@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
-    public TextMeshProUGUI woodText;
+     public TextMeshProUGUI woodText;
     public TextMeshProUGUI seedText;
     public TextMeshProUGUI waterText;
     public TextMeshProUGUI ironText;
