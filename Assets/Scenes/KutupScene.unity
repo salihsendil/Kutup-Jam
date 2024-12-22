@@ -238,7 +238,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5234826950647661427, guid: bd3aa71d4ca537644afe4901ef73ef03, type: 3}
   m_PrefabInstance: {fileID: 314000582}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &753653255
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -354,25 +353,6 @@ AudioSource:
     m_RotationOrder: 4
 --- !u!4 &753653257
 Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 753653255}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1164592984 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2885370815824428773, guid: 68f80c72a0af88142bdb4930fad2e9df, type: 3}
-  m_PrefabInstance: {fileID: 235876688}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1886346271
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1960,6 +1940,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1426454803567569620, guid: dbb6c82e6c90b8943a005d0d2a09efcc, type: 3}
+      propertyPath: resetLevels
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1426454803567569620, guid: dbb6c82e6c90b8943a005d0d2a09efcc, type: 3}
       propertyPath: gamePlayScene
       value: 
       objectReference: {fileID: 4498646783648185009}
@@ -1968,7 +1952,8 @@ PrefabInstance:
       value: SceneManagers
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7078868930470369621, guid: dbb6c82e6c90b8943a005d0d2a09efcc, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dbb6c82e6c90b8943a005d0d2a09efcc, type: 3}
