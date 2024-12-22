@@ -76,5 +76,7 @@ public class UIManager : MonoBehaviour
         GameOverPanel(true);
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        yield return new WaitForSeconds(2f);
+        sceneController.ReturnLevelScene();
     }
 }

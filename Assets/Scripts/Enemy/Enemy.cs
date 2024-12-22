@@ -66,7 +66,11 @@ public class Enemy : MonoBehaviour, IShootable
         if (other.GetComponent<Projectile>())
         {
             healthSystem.TakeDamage(other.GetComponent<Projectile>().Damage, gameObject);
-            enemyAnimController.AnimatorBody.SetTrigger("isDamage");
+            if (healthSystem.GetHealth() > 0)
+            {
+                enemyAnimController.AnimatorBody.SetTrigger("isDamage");
+            }
+           
             if (healthSystem.GetHealth() <= 0)
             {
                 StartCoroutine(DiedEnemy());
