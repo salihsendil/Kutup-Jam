@@ -41,9 +41,9 @@ public class PlayerInputManager : MonoBehaviour
         _playerInput.Movement.Move.performed += Move;
         _playerInput.Movement.Move.canceled += Move;
 
-        _playerInput.Mouse.Fire.started += Fire;
+
         _playerInput.Mouse.Fire.performed += Fire;
-        _playerInput.Mouse.Fire.canceled += Fire;
+
 
     }
 
@@ -69,9 +69,9 @@ public class PlayerInputManager : MonoBehaviour
         _playerInput.Movement.Move.performed -= Move;
         _playerInput.Movement.Move.canceled -= Move;
         
-        _playerInput.Mouse.Fire.started -= Fire;
+
         _playerInput.Mouse.Fire.performed -= Fire;
-        _playerInput.Mouse.Fire.canceled -= Fire;
+
     }
 
 }
