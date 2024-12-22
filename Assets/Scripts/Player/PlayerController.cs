@@ -115,7 +115,6 @@ public class PlayerController : MonoBehaviour, IShootable
     {
         if (_canShoot)
         {
-            Debug.Log("sýkýyom");
             StartCoroutine(FireDelay());
         }
     }
