@@ -1454,7 +1454,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8982846663583111853}
         m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
         m_MethodName: PlayGameButton
         m_Mode: 1
@@ -1734,7 +1733,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 566688969074697629}
-  - component: {fileID: 8982846663583111853}
   m_Layer: 0
   m_Name: SceneManagers
   m_TagString: Untagged
@@ -1759,7 +1757,6 @@ Transform:
   - {fileID: 7409797295816619696}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8982846663583111853
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1773,10 +1770,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelScene: {fileID: 4636236478337971343}
   mainScene: {fileID: 6984620863325665440}
-  videoPlayer: {fileID: 8589286819487752992}
-  rawImage: {fileID: 3757083670002475730}
-  videoPanel: {fileID: 6786005901503466079}
-  delayAfterVideo: 2
 --- !u!1 &1713180798832877476
 GameObject:
   m_ObjectHideFlags: 0
@@ -2114,7 +2107,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3056514605768681861
 Transform:
   m_ObjectHideFlags: 0
@@ -4790,7 +4783,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8982846663583111853}
         m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
         m_MethodName: QuitGameButton
         m_Mode: 1

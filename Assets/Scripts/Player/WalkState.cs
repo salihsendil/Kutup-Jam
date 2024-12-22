@@ -18,7 +18,7 @@ public class WalkState : IAnimState
         if (!player.IsWalking)
         {
             player.SwitchState(new IdleState());
-            player.AnimatorFoot.SetBool(player.IsWalkingHash, true);
+            player.AnimatorFoot.SetBool(player.IsWalkingHash, false);
         }
     }
 }

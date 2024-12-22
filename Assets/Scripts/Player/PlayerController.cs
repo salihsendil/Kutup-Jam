@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour, IShootable
     [SerializeField] private float _speed = 3f;
 
     [Header("Rotation Variables")]
-    [SerializeField] private float _rotationOffset;
+    [SerializeField] private float _rotationAngle;
 
     [Header("Shooting Variables")]
     [SerializeField] private bool _canShoot = true;
@@ -28,6 +28,8 @@ public class PlayerController : MonoBehaviour, IShootable
     [SerializeField] private int health = 100;
     [SerializeField] private int _currentHealth = 100;
     public HealthSystem healthSystem;
+
+    private bool _playAnimOneTime = true;
 
 
     public Transform ShootingPoint { get => _shootingPoint; }
@@ -58,16 +60,23 @@ public class PlayerController : MonoBehaviour, IShootable
 
     void Update()
     {
+        _currentHealth = healthSystem.GetHealth();
+        if (_currentHealth <= 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, _rotationAngle);
+            if (_playAnimOneTime)
+            {
+                PlayerAnimController.Instance.AnimatorBody.SetTrigger("isDeath");
+                _playAnimOneTime = false;
+            }
+            return;
+        }
+
         HandleMovement();
         HandleRotation();
         if (PlayerInputManager.Instance.IsShooting)
         {
             Shoot();
-        }
-
-        if (healthSystem.GetHealth() <= 0)
-        {
-            healthSystem.Die(gameObject);
         }
 
     }
@@ -97,9 +106,9 @@ public class PlayerController : MonoBehaviour, IShootable
         mousePosition.z = 0f;
 
         Vector3 direction = mousePosition - transform.position;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        _rotationAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         Debug.DrawLine(transform.position, mousePosition, Color.red, 1f);
-        transform.rotation = Quaternion.Euler(0, 0, angle + _rotationOffset);
+        transform.rotation = Quaternion.Euler(0, 0, _rotationAngle);
     }
 
     public void Shoot()

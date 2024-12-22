@@ -24,15 +24,16 @@ public class HealthSystem : MonoBehaviour
     {
         if (_currentHealth <= 0)
         {
-            if (obj.GetComponent<EnemyAnimController>())
+            if (obj.GetComponent<PlayerAnimController>())
             {
-                EnemyAnimController.Instance.AnimatorBody.SetTrigger("isDeath");
+                obj.GetComponent<PlayerAnimController>().AnimatorBody.SetTrigger("isDeath");
             }
-            Destroy(obj, 1f);
+
+            Destroy(obj, 10f);
         }
     }
 
-    
+
 
     public void HealUp(int healAmount)
     {

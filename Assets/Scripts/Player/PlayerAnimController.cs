@@ -48,9 +48,9 @@ public class PlayerAnimController : MonoBehaviour
     {
         _currentState.UpdateState(this);
 
-        if (GetComponent<PlayerController>().CurrentHealth<=0)
+        if (PlayerController.Instance.healthSystem.GetHealth() <= 0)
         {
-            _animatorBody.SetTrigger("isDeath");
+            PlayerController.Instance.GetComponent<CapsuleCollider2D>().enabled = false;
         }
 
     }

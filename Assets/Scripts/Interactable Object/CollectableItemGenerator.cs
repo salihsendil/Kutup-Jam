@@ -24,7 +24,6 @@ public class CollectableItemGenerator : MonoBehaviour
 
     public void SpawnObjectAtEnemyDeathPoint(Transform sender)
     {
-        //Debug.Log("çalýþtým");
         int random = UnityEngine.Random.Range(0, _types.Count - 1);
         Instantiate(_types[random], sender.position, Quaternion.identity);
     }
