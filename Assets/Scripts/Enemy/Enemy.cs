@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour, IShootable
     public Action<Transform> OnEnemyDeathActionForDropItem;
     public EnemyAnimController enemyAnimController;
     public HealthSystem HealthSystem { get => healthSystem; }
+    
 
     private void Awake()
     {
@@ -21,6 +22,13 @@ public class Enemy : MonoBehaviour, IShootable
         healthSystem = new HealthSystem(health);
         healthSystem._currentHealth = 100;
     }
+
+    private void OnEnable()
+    {
+        agent.speed = 3;
+        GetComponent<Collider2D>().enabled = true;
+    }
+
     private IEnumerator AssignPlayer()
     {
         while (GameManager.Instance == null || GameManager.Instance.GetPlayer() == null)
@@ -58,9 +66,10 @@ public class Enemy : MonoBehaviour, IShootable
         if (other.GetComponent<Projectile>())
         {
             healthSystem.TakeDamage(other.GetComponent<Projectile>().Damage, gameObject);
+            enemyAnimController.AnimatorBody.SetTrigger("isDamage");
             if (healthSystem.GetHealth() <= 0)
             {
-                ObjectPoolingManager.Instance.ReturnEnemyToPool(gameObject);
+                StartCoroutine(DiedEnemy());
             }
         }
 
@@ -68,6 +77,15 @@ public class Enemy : MonoBehaviour, IShootable
         {
             enemyAnimController.AnimatorBody.SetBool(enemyAnimController.IsAttackingHash, true);
         }
+    }
+
+    IEnumerator DiedEnemy()
+    {
+        enemyAnimController.AnimatorBody.SetTrigger("isDeath");
+        agent.speed = 0;
+        GetComponent<CapsuleCollider2D>().enabled = false;
+        yield return new WaitForSeconds(2f);
+        ObjectPoolingManager.Instance.ReturnEnemyToPool(gameObject);
     }
 
     private void OnTriggerExit2D(Collider2D collision)

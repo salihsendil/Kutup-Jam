@@ -2508,6 +2508,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 351
       objectReference: {fileID: 0}
+    - target: {fileID: 8589286819487752992, guid: dbb6c82e6c90b8943a005d0d2a09efcc, type: 3}
+      propertyPath: m_WaitForFirstFrame
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8772727883356682074, guid: dbb6c82e6c90b8943a005d0d2a09efcc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
