@@ -33,7 +33,7 @@ public class LevelManager : MonoBehaviour
         GetLevelCompletedImage();
     }
 
-    private void GetGamePlayScene()
+    public void GetGamePlayScene()
     {
         gamePlayScene.SetActive(true);
         levelScene.SetActive(false);
@@ -73,7 +73,6 @@ public class LevelManager : MonoBehaviour
                     levels[startingLevel+1].
                         playButton.onClick.AddListener(GetGamePlayScene);
                     UnlockLevel(levels[i + 1]);
-                    Debug.Log( levels[startingLevel+1]);
                 }
             }
         }
