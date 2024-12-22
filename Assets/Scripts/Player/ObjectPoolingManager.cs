@@ -8,8 +8,8 @@ public class ObjectPoolingManager : MonoBehaviour
     public static ObjectPoolingManager Instance { get; private set; }
 
     [Header("Const Variables")]
-    private const int PROJECTILE_POOL_SIZE = 40;
-    private const int ENEMY_POOL_SIZE = 40;
+    private const int PROJECTILE_POOL_SIZE = 100;
+    private const int ENEMY_POOL_SIZE = 100;
 
     [Header("Prefabs")]
     [SerializeField] private GameObject _projectilePrefab;
@@ -67,6 +67,7 @@ public class ObjectPoolingManager : MonoBehaviour
             else
             {
                 ReturnEnemyToPool(enemy);
+                Debug.LogWarning("NavMesh.SamplePosition failed to find a valid position!");
                 return null;
             }
         }
@@ -77,6 +78,10 @@ public class ObjectPoolingManager : MonoBehaviour
     {
         enemy.SetActive(false);
         _enemyList.Enqueue(enemy);
+        // if (enemy.GetComponent<Enemy>().HealthSystem._currentHealth <= 0)
+        // {
+        //     OnEnemyGetBackPool?.Invoke(enemy.transform);
+        // }
     }
     public void GetBackProjectileToPool(GameObject obj)
     {

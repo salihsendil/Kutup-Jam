@@ -101,7 +101,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44639c94f509a8045aca0c71945a5956, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _amount: 0
+  _name: Iron
+  _amount: 50
 --- !u!70 &-151184191828526036
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

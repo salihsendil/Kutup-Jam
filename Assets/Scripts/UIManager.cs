@@ -19,6 +19,7 @@ public class UIManager : MonoBehaviour
     private float targetFillAmount;
     private Coroutine currentFillCoroutine;
     [SerializeField] private GameObject _gameOverPanel;
+    public SceneController sceneController;
     
     private void Start()
     {
@@ -33,7 +34,7 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        if (currentHealth <= 0)
+        if (currentHealth <= 10)
         {
             StartCoroutine(GameOverPanelDelay());
         }
@@ -75,5 +76,4 @@ public class UIManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-
 }

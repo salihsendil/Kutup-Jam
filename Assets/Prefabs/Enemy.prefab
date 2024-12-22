@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 7540520358828891606}
   - component: {fileID: 2437175487434129349}
   - component: {fileID: 9157657342713291301}
-  - component: {fileID: 4309429980485032720}
   - component: {fileID: 3491222533108492045}
   - component: {fileID: 3121571193134481043}
   - component: {fileID: 4924447841536944222}
+  - component: {fileID: 5698854942199554937}
   m_Layer: 10
   m_Name: Enemy
   m_TagString: Untagged
@@ -131,23 +131,7 @@ MonoBehaviour:
   player: {fileID: 0}
   health: 100
   _damage: 10
---- !u!114 &4309429980485032720
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1228731738623812601}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5979bb4915a373141ae779bd9f1012ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _animatorBody: {fileID: 0}
-  _animatorFoot: {fileID: 0}
-  isWalking: 0
-  isWalkingHash: 0
-  isAttackingHash: 0
+  enemyAnimController: {fileID: 5698854942199554937}
 --- !u!95 &3491222533108492045
 Animator:
   serializedVersion: 7
@@ -234,6 +218,23 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 3.2, y: 3.2}
   m_Direction: 0
+--- !u!114 &5698854942199554937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1228731738623812601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5979bb4915a373141ae779bd9f1012ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animatorBody: {fileID: 0}
+  _animatorFoot: {fileID: 0}
+  isWalking: 0
+  isWalkingHash: 0
+  isAttackingHash: 0
 --- !u!1 &5700483739554533162
 GameObject:
   m_ObjectHideFlags: 0

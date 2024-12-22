@@ -12,13 +12,14 @@ public class Enemy : MonoBehaviour, IShootable
     [SerializeField] private int _damage = 10;
     public static Action OnDeath;
     public Action<Transform> OnEnemyDeathActionForDropItem;
-
+    public EnemyAnimController enemyAnimController;
     public HealthSystem HealthSystem { get => healthSystem; }
 
     private void Awake()
     {
         StartCoroutine(AssignPlayer());
         healthSystem = new HealthSystem(health);
+        healthSystem._currentHealth = 100;
     }
     private IEnumerator AssignPlayer()
     {
@@ -38,7 +39,8 @@ public class Enemy : MonoBehaviour, IShootable
     }
     private void Update()
     {
-        EnemyAnimController.Instance.IsWalking = agent.speed != 0 ? true : false;
+        
+        enemyAnimController.IsWalking = agent.speed != 0 ? true : false;
         if (player != null)
         {
             agent.SetDestination(player.position);
@@ -64,13 +66,13 @@ public class Enemy : MonoBehaviour, IShootable
 
         if (other.gameObject.GetComponent<PlayerController>())
         {
-            EnemyAnimController.Instance.AnimatorBody.SetBool(EnemyAnimController.Instance.IsAttackingHash, true);
+            enemyAnimController.AnimatorBody.SetBool(enemyAnimController.IsAttackingHash, true);
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        EnemyAnimController.Instance.AnimatorBody.SetBool(EnemyAnimController.Instance.IsAttackingHash, false);
+        enemyAnimController.AnimatorBody.SetBool(enemyAnimController.IsAttackingHash, false);
     }
 
 
