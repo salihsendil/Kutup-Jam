@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6710678627028029131
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5161232957989162798}
+  - component: {fileID: 8248924529261813813}
+  m_Layer: 0
+  m_Name: ResourceManagerLast
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5161232957989162798
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6710678627028029131}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 172.245, y: 412.17206, z: 9.0729685}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8248924529261813813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6710678627028029131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aacb1f47685a98d4d885ff80e674f389, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wood: 50
+  water: 50
+  iron: 50
+  seeds: 50
+  woodSprite: {fileID: 21300000, guid: 41d22cb1cc6363c48858cc749b618b7c, type: 3}
+  waterSprite: {fileID: 21300000, guid: 0f58a2dc57a80c9458c6f521fb8f6e6e, type: 3}
+  ironSprite: {fileID: 21300000, guid: c823b632b8b90194e814a21b98083f99, type: 3}
+  seedsSprite: {fileID: 21300000, guid: e02a3f7ba421d85479b9f110b17dff54, type: 3}
+  resourcePrefab: {fileID: 5982506026689060864, guid: e04f9c3c3fdab9a4795d355aa6c9c8f8, type: 3}

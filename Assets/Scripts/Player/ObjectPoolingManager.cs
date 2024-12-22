@@ -8,8 +8,8 @@ public class ObjectPoolingManager : MonoBehaviour
     public static ObjectPoolingManager Instance { get; private set; }
 
     [Header("Const Variables")]
-    private const int PROJECTILE_POOL_SIZE = 100;
-    private const int ENEMY_POOL_SIZE = 100;
+    private const int PROJECTILE_POOL_SIZE = 40;
+    private const int ENEMY_POOL_SIZE = 40;
 
     [Header("Prefabs")]
     [SerializeField] private GameObject _projectilePrefab;
@@ -77,10 +77,10 @@ public class ObjectPoolingManager : MonoBehaviour
     {
         enemy.SetActive(false);
         _enemyList.Enqueue(enemy);
-        if (enemy.GetComponent<Enemy>().HealthSystem._currentHealth <= 0)
-        {
-            OnEnemyGetBackPool?.Invoke(enemy.transform);
-        }
+        // if (enemy.GetComponent<Enemy>().HealthSystem._currentHealth <= 0)
+        // {
+        //     OnEnemyGetBackPool?.Invoke(enemy.transform);
+        // }
     }
     public void GetBackProjectileToPool(GameObject obj)
     {
