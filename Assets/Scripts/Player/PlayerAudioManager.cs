@@ -5,14 +5,12 @@ public class PlayerAudioManager : MonoBehaviour
 {
     private AudioSource _audioSource;
 
-    [SerializeField] private List<AudioClip> _footstepSfxList;
-    [SerializeField] private List<AudioClip> _shootSfxList;
+    [SerializeField] private List<AudioClip> _footstepSfxList = new List<AudioClip>();
+    [SerializeField] private List<AudioClip> _shootSfxList = new List<AudioClip>();
 
     private void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
-        _footstepSfxList = new List<AudioClip>();
-        _shootSfxList = new List<AudioClip>();
     }
 
     public void GetRandomShootSfx()
