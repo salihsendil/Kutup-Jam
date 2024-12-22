@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rb2d: {fileID: 0}
   direction: {x: 0, y: 0, z: 0}
-  _speed: 8000
+  _speed: 1000
   _destroyDelay: 13
   _damage: 25
 --- !u!61 &-2622331445772591274
