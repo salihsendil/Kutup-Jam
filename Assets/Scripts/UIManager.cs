@@ -72,6 +72,7 @@ public class UIManager : MonoBehaviour
 
     IEnumerator GameOverPanelDelay()
     {
+        yield return new WaitForSeconds(3f);
         GameOverPanel(true);
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
