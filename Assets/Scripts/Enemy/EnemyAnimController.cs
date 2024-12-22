@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class EnemyAnimController : MonoBehaviour
 {
-    public static EnemyAnimController Instance { get; private set; }
-
     [Header("References")]
     IAnimState _currentState;
     [SerializeField] private Animator _animatorBody;
@@ -23,16 +21,6 @@ public class EnemyAnimController : MonoBehaviour
 
     private void Awake()
     {
-        #region SingletonPattern
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
-        #endregion
-
         _animatorBody = GetComponent<Animator>();
         _animatorFoot = transform.GetChild(0).GetComponent<Animator>();
 

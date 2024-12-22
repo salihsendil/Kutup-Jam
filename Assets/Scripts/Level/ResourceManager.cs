@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class ResourceManager : MonoBehaviour
@@ -15,6 +16,7 @@ public class ResourceManager : MonoBehaviour
     public Sprite seedsSprite;
 
     public GameObject resourcePrefab;
+    public UIManager uiManager;
 
     private void Awake()
     {
@@ -42,6 +44,11 @@ public class ResourceManager : MonoBehaviour
         water = PlayerPrefs.GetInt("Water", 0);
         iron = PlayerPrefs.GetInt("Iron", 0);
         seeds = PlayerPrefs.GetInt("Seeds", 0);
+        
+        uiManager.ironText.text = iron.ToString();
+        uiManager.woodText.text = wood.ToString();
+        uiManager.waterText.text = water.ToString();
+        uiManager.seedText.text = seeds.ToString();
     }
     public void AddResource(string resourceName, int amount)
     {

@@ -101,7 +101,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44639c94f509a8045aca0c71945a5956, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _amount: 0
+  _name: Seeds
+  _amount: 50
 --- !u!61 &2757278740691986240
 BoxCollider2D:
   m_ObjectHideFlags: 0

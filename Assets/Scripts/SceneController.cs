@@ -22,6 +22,13 @@ public class SceneController : MonoBehaviour
       mainScene.SetActive(false);
    }
 
+   public void ReturnLevelScene()
+   {
+      sceneManager.SetActive(true);
+      levelScene.SetActive(true);
+      playScene.SetActive(false);
+      
+   }
    public void LevelSceneStartButtun()
    {
       sceneManager.SetActive(false);
@@ -36,13 +43,14 @@ public class SceneController : MonoBehaviour
    
    void PlayVideo()
    {
+      videoPanel.SetActive(true);
       if (videoPlayer == null || rawImage == null || videoPanel == null )
       {
          Debug.LogError("Bileşenlerden biri atanmadı!");
          return;
       }
       
-      videoPanel.SetActive(true);
+     
       mainScene.SetActive(false);
       
       if (videoPlayer.targetTexture == null)
